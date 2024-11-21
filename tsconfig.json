@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "esnext", // Anger målversion av JavaScript
+    "module": "esnext", // Använd ES-moduler
+    "moduleResolution": "node", // Hur moduler ska lösas (använd Node.js-modell)
+    "lib": ["dom", "esnext"], // Inkludera både DOM och ES-typdefinitioner
+    "types": ["vite/client"], // Lägg till Node.js-typdefinitioner (för process.env)
+    "jsx": "preserve", // För att hantera JSX i Vue-komponenter
+    "esModuleInterop": true, // Gör det enklare att importera CommonJS-moduler
+    "skipLibCheck": true, // Hoppa över kontroll av bibliotekstyper för snabbare byggning
+    "strict": true, // Aktiverar strikt typkontroll (kan justeras baserat på behov)
+    "resolveJsonModule": true // Möjliggör att importera JSON-filer som moduler
+  },
+  "include": [
+    "src/**/*.ts", // Inkludera alla .ts-filer i src-mappen
+    "src/**/*.d.ts", // Inkludera deklarationsfiler
+    "src/**/*.tsx", // Om du använder JSX/TSX
+    "src/**/*.vue" // Inkludera Vue-komponenter
+  ],
+  "exclude": [
+    "node_modules", // Uteslut node_modules för att förbättra prestanda
+    "dist", // Uteslut byggfiler
+    "public" // Uteslut public-mappen om den inte används för typkontroll
+  ]
+  // "references": [
+  //   {
+  //     "path": "./tsconfig.node.json" // Om du har separata konfigurationer för Node.js och Vue
+  //   },
+  //   {
+  //     "path": "./tsconfig.app.json" // Om du använder en separat app-konfiguration
+  //   }
+  // ]
+}
