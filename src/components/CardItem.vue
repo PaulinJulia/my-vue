@@ -1,14 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+
+const cards = ref([
+  "Vad är en aktie?",
+  "Hur värderar man en aktie?",
+  "Vilka risker finns det med aktier?",
+  "Hur många aktier skall man äga?",
+]);
+</script>
 
 <template>
-  <section>
     <div class="card-container">
-      <p class="cardItem">Vad är en aktie?</p>
-      <p class="cardItem">Hur värderar man en aktie?</p>
-      <p class="cardItem">Vilka risker finns det med aktier?</p>
-      <p class="cardItem">Hur många aktier skall man äga?</p>
+      <p v-for="(card, index) in cards" :key="index" class="cardItem">
+        {{ card }}
+      </p>
     </div>
-  </section>
 </template>
 
 <style scoped>
@@ -17,7 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 2rem 5rem;
 }
 
 .cardItem {
@@ -26,7 +32,9 @@
   width: 15rem;
   height: 16rem;
   border-radius: 8px;
+  text-align: center;
   box-shadow: 2px 2px 10px rgb(67, 66, 66);
-  background-color: var(--color-background);
+  background-color: var(--color-background-grey);
+  color: var(--color-black);
 }
 </style>

@@ -1,14 +1,15 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --text-white-soft: #f8f8f8;
-  --text-color-mint: #58d0bc;
+  --text-color-mint: #2bb673;
   --color-green: #0be85d;
+  --color-yellow: #def9ac;
 
-  --color-dark-black: #060606;
-  --color-dark: #141720;
-  --color-background-dark: #1c363b;
-  --color-background: #f6f9f9;
+  --color-dark-blue: #141720;
+  --color-dark-green: #295e5f;
+  --color-black: #060606;
   --color-background-grey: #f5f5f5;
+  --color-grey: #8B92AE;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,25 +26,18 @@
   } */
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
+* {
+margin: 0;
+padding: 0;
 }
 
 body {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   color: var(--color-text);
   background: var(--color-background);
-  transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   font-size: 15px;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }

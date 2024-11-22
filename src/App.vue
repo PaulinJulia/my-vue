@@ -1,21 +1,28 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
+import Footer from "./components/Footer.vue";
 </script>
 
 <template>
   <header>
     <nav class="navbar-container">
-      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/"
+        ><img
+          alt="Bay leaf"
+          class="logo"
+          src="@/assets/greenleaf.png"
+          width="16"
+          height="16"
+        /><span>Home</span></RouterLink
+      >
       <RouterLink to="/about">Börsen idag</RouterLink>
       <RouterLink to="/inspiration">Aktieinspiration</RouterLink>
       <RouterLink to="/stockprice">Aktiekurser</RouterLink>
     </nav>
   </header>
-
   <RouterView />
   <footer class="footer-container">
-    <p>Hej footer</p>
-
+    <Footer />
   </footer>
 </template>
 
@@ -30,7 +37,7 @@ header {
   font-size: 12px;
   text-align: center;
   padding: 1rem;
-  background: var(--color-dark-black);
+  background: var(--color-black);
 }
 nav {
   color: var(--text-color-mint);
@@ -55,7 +62,7 @@ nav a:first-of-type {
 }
 
 .footer-container {
-  background-color: var(--color-dark-black);
+  background-color: var(--color-black);
   color: var(--text-white-soft);
 }
 
