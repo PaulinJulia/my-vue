@@ -34,7 +34,6 @@ import ThirdSection from "../components/ThirdSection.vue";
 }
 .container {
   margin: 0;
-  /* padding: 0 8rem 0 8rem; */
   height: 100vh;
 }
 </style>

@@ -2,8 +2,11 @@
 import { ref, onMounted } from "vue";
 import axios from "axios";
 const finnhubApiKey = import.meta.env.VITE_APP_FINNHUB_KEY as string;
+const fmpApiKey = import.meta.env.VITE_APP_FMP_KEY as string;
 
 const stockSymbols = ["AAPL"];
+const fromDate = 2023-10-10;
+const toDate = 2023-10-10;
 
 interface StockData {
   symbol: string;
@@ -15,16 +18,22 @@ interface StockData {
 }
 const data = ref<StockData[]>([]);
 
-const fetchStockData = async () => {
+// `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${finnhubApiKey}`;
+// `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?from=${fromDate}to=${toDate}&apikey=${fmpApiKey}`;
+
+onMounted(async () => {
   try {
     for (const symbol of stockSymbols) {
-      const finnhubUrl = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${finnhubApiKey}`;
+      const finnhubUrl = `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?from=${fromDate}&to=${toDate}&apikey=${fmpApiKey}`;
+
       if (!finnhubApiKey) {
         console.error(
           "Finnhub API key is not set in the environment variables"
         );
       }
       const response = await axios.get(finnhubUrl);
+      console.log(response);
+
       data.value.push({
         symbol,
         currentPrice: response.data.c,
@@ -37,11 +46,8 @@ const fetchStockData = async () => {
   } catch (error) {
     console.error("Error fetching stock data:", error);
   }
-};
-
-onMounted(() => {
-  fetchStockData(); // Hämta data när komponenten är monterad
 });
+
 </script>
 
 <template>

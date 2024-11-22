@@ -16,7 +16,7 @@ import Footer from "./components/Footer.vue";
         /><span>Home</span></RouterLink
       >
       <RouterLink to="/about">Börsen idag</RouterLink>
-      <RouterLink to="/inspiration">Aktieinspiration</RouterLink>
+      <RouterLink to="/inspiration">Inspiration</RouterLink>
       <RouterLink to="/stockprice">Aktiekurser</RouterLink>
     </nav>
   </header>

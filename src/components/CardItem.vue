@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { ref } from "vue";
+interface Card {
+  id: number;
+  name: string;
+}
 
-const cards = ref([
-  "Vad är en aktie?",
-  "Hur värderar man en aktie?",
-  "Vilka risker finns det med aktier?",
-  "Hur många aktier skall man äga?",
-]);
+defineProps<{
+  cards: Card[];
+}>();
 </script>
 
 <template>
-    <div class="card-container">
-      <p v-for="(card, index) in cards" :key="index" class="cardItem">
-        {{ card }}
-      </p>
-    </div>
+  <div class="card-container">
+    <p v-for="card in cards" :key="card.id" class="cardItem">
+      {{ card.name }}
+    </p>
+  </div>
 </template>
 
 <style scoped>
