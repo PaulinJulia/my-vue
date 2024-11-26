@@ -3,7 +3,6 @@ import Welcome from "../components/Welcome.vue";
 import FirstSection from "../components/FirstSection.vue";
 import SecondSection from "../components/SecondSection.vue";
 import ThirdSection from "../components/ThirdSection.vue";
-
 </script>
 
 <template>
@@ -34,6 +33,6 @@ import ThirdSection from "../components/ThirdSection.vue";
 }
 .container {
   margin: 0;
-  height: 100vh;
+  /* height: 100vh; */
 }
 </style>

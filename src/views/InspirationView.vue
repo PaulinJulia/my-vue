@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import CardItem from "../components/CardItem.vue";
+import ThirdSection from "../components/ThirdSection.vue";
+import StockHistorical from "../components/StockHistorical.vue";
 
 const cards = [
   { id: 1, name: "Top 10 företag med Bitcoin-innehav" },
@@ -14,15 +16,17 @@ const cards = [
 
 <template>
   <main class="container">
-    <h1>Hej från inspirationssidan!</h1>
+    <ThirdSection />
+    <StockHistorical />
     <CardItem :cards="cards" />
+    <ThirdSection />
   </main>
 </template>
 
 <style>
 .container {
   margin: 0;
-  height: 100vh;
+  /* height: 100vh; */
   color: var(--color-black);
 }
 </style>

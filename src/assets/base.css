@@ -9,7 +9,7 @@
   --color-dark-green: #295e5f;
   --color-black: #060606;
   --color-background-grey: #f5f5f5;
-  --color-grey: #8B92AE;
+  --color-grey: #8b92ae;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,8 +27,8 @@
 }
 
 * {
-margin: 0;
-padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {

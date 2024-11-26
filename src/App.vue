@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import Footer from "./components/Footer.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 </script>
 
 <template>
@@ -15,21 +15,21 @@ import Footer from "./components/Footer.vue";
           height="16"
         /><span>Home</span></RouterLink
       >
-      <RouterLink to="/about">Börsen idag</RouterLink>
       <RouterLink to="/inspiration">Inspiration</RouterLink>
       <RouterLink to="/stockprice">Aktiekurser</RouterLink>
+      <RouterLink to="/favourite">Favoriter</RouterLink>
     </nav>
   </header>
   <RouterView />
-  <footer class="footer-container">
-    <Footer />
+  <footer>
+    <FooterComponent />
   </footer>
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
-  max-height: 100vh;
+  /* max-height: 100vh; */
 }
 
 .navbar-container {

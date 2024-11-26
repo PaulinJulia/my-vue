@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="card-container">
@@ -17,5 +15,6 @@
 .card-container {
   text-align: center;
   padding: 2rem;
+  background-color: var(--color-black);
 }
 </style>
