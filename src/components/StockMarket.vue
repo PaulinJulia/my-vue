@@ -3,8 +3,6 @@ import { ref, onMounted, onUnmounted } from "vue";
 import axios from "axios";
 const fmpApiKey = import.meta.env.VITE_APP_FMP_KEY as string;
 
-const exchange = ["STO"];
-
 interface StockData {
   avgVolume: number;
   change: number;
@@ -29,6 +27,8 @@ interface StockData {
   yearHigh: number;
   yearLow: number;
 }
+
+const exchange = ["STO"];
 const data = ref<StockData[]>([]);
 const visibleItems = ref(20);
 
@@ -97,25 +97,25 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <div class="title-wrapper">
-      <p>Pris/Vinstkrona</p>
-      <p>Pris</p>
-      <p>Årshögst</p>
-      <p>Årslägst</p>
+      <p class="title">Pris/Vinstkrona</p>
+      <p class="title">Pris</p>
+      <p class="title">Årshögst</p>
+      <p class="title">Årslägst</p>
     </div>
     <div v-if="data.length">
       <ul
         v-for="(item, index) in data.slice(0, visibleItems)"
         :key="index"
-        class="stock-item"
+        class="stock-wrapper"
         @click="handleClickedItem(item.name)"
       >
-        <li>{{ item.name }}</li>
-        <li>{{ item.pe }}</li>
-        <li>{{ item.price }}</li>
-        <li>{{ item.yearHigh }}</li>
-        <li>{{ item.yearLow }}</li>
+        <li class="item-name">{{ item.name }}</li>
+        <li class="item">{{ item.pe }}</li>
+        <li class="item">{{ item.price }}</li>
+        <li class="item">{{ item.yearHigh }}</li>
+        <li class="item">{{ item.yearLow }}</li>
       </ul>
     </div>
     <p v-else>Loading...</p>
@@ -123,20 +123,32 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+.container {
+  margin: 0 2rem 5rem 2rem;
+}
 .title-wrapper {
   display: flex;
   padding: 0 2rem;
+  justify-content: end;
 }
 .title-wrapper > p {
   padding: 0 1rem;
 }
-.stock-item {
-  border-bottom: 2px solid blue;
+.stock-wrapper {
+  border: 1px solid var(--color-grey);
   list-style: none;
   display: flex;
-  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
 }
-.stock-item > li {
-  padding: 0 1rem;
+.item-name {
+  text-transform: uppercase;
+  font-weight: bold;
+  /* flex: 1; */
+}
+.stock-wrapper > li {
+  padding: 0.5rem;
+  text-align: right;
+  margin-left: 1rem;
 }
 </style>
