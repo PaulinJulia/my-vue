@@ -17,12 +17,6 @@ const handleGermany = () => {
 
 <template>
   <div class="market-wrapper">
-    <div>
-      <p class="title" v-if="selectedMarket === 'LSE'">Storbritannien</p>
-      <p class="title" v-else-if="selectedMarket === 'NYSE'">USA</p>
-      <p class="title" v-else-if="selectedMarket === 'XETRA'">Tyskland</p>
-      <p class="title" v-else>Sverige</p>
-    </div>
     <button class="market" @click="handleUnitedKingdom">
       <img
         src="https://flagsapi.com/GB/flat/64.png"

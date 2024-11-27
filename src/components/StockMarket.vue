@@ -35,14 +35,18 @@ const searchWord = ref("");
 const data = ref<StockData[]>([]);
 const visibleItems = ref(20);
 
-// const searched = computed(() => {
-//   if (!searchWord) {
-//     return data.value;
-//   } else
-//     return data.value.filter((stock) =>
-//       stock.name.toLowerCase().includes(searchWord.toLowerCase())
-//     );
-// });
+const searched = computed(() => {
+  if (!searchWord.value) {
+    return data.value;
+  } else {
+    return data.value.filter((stock) => {
+      return (
+        stock.name &&
+        stock.name.toLowerCase().includes(searchWord.value.toLowerCase())
+      );
+    });
+  }
+});
 
 const handleClickedItem = (name: string) => {
   console.log("klickad", name);
@@ -136,14 +140,20 @@ watch(
   </div>
   <div class="container">
     <div class="title-wrapper">
+      <p class="title-market" v-if="selectedMarket === 'LSE'">Storbritannien</p>
+      <p class="title-market" v-else-if="selectedMarket === 'NYSE'">USA</p>
+      <p class="title-market" v-else-if="selectedMarket === 'XETRA'">
+        Tyskland
+      </p>
+      <p class="title-market" v-else>Sverige</p>
       <p class="title">Pris/Vinstkrona</p>
       <p class="title">Pris</p>
       <p class="title">Årshögst</p>
       <p class="title">Årslägst</p>
     </div>
-    <div v-if="data.length">
+    <div v-if="searched.length">
       <ul
-        v-for="(item, index) in data.slice(0, visibleItems)"
+        v-for="(item, index) in searched.slice(0, visibleItems)"
         :key="index"
         class="stock-wrapper"
         @click="handleClickedItem(item.name)"
@@ -182,13 +192,20 @@ watch(
   font-size: 0.8rem;
   width: 150px;
 }
+.list:active,
+.list:focus {
+  outline: none;
+}
 .container {
   margin: 0 2rem 5rem 2rem;
 }
 .title-wrapper {
   display: flex;
   padding: 0 2rem;
-  justify-content: end;
+  justify-content: space-between;
+}
+.title-market {
+  width: 200px;
 }
 .title-wrapper > p {
   padding: 0 1rem;
