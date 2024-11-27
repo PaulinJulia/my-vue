@@ -10,11 +10,6 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/favourite",
-      name: "favourite",
-      component: () => import("../views/FavouriteView.vue"),
-    },
-    {
       path: "/inspiration",
       name: "inspiration",
       component: () => import("../views/InspirationView.vue"),

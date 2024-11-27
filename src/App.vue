@@ -17,7 +17,6 @@ import FooterComponent from "./components/FooterComponent.vue";
       >
       <RouterLink to="/inspiration">Inspiration</RouterLink>
       <RouterLink to="/stockprice">Aktiekurser</RouterLink>
-      <RouterLink to="/favourite">Favoriter</RouterLink>
     </nav>
   </header>
   <RouterView />

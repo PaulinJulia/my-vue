@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import StockMarket from "../components/StockMarket.vue";
-import SearchStock from "../components/SearchStock.vue";
+import Market from "../components/Market.vue";
 </script>
 
 <template>
   <main class="container">
     <h1>Aktiekurser</h1>
-    <SearchStock />
-    <StockMarket />
+    <Market />
   </main>
 </template>
 

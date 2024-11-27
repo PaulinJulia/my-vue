@@ -2,6 +2,7 @@
 interface Card {
   id: number;
   name: string;
+  image: string;
 }
 
 defineProps<{
@@ -12,7 +13,9 @@ defineProps<{
 <template>
   <div class="card-container">
     <p v-for="card in cards" :key="card.id" class="cardItem">
-      {{ card.name }}
+      <img :src="`/assets/${card.image}`" :alt="card.image" class="image" />
+      <p>{{ card.name }}</p>
+      <img>
     </p>
   </div>
 </template>

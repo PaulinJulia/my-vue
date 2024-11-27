@@ -4,12 +4,17 @@ import ThirdSection from "../components/ThirdSection.vue";
 import StockHistorical from "../components/StockHistorical.vue";
 
 const cards = [
-  { id: 1, name: "Top 10 företag med Bitcoin-innehav" },
-  { id: 2, name: "Svenska utdelningstoppen" },
-  { id: 3, name: "Kryptoaktier" },
+  {
+    id: 1,
+    name: "Top 10 företag med Bitcoin-innehav",
+    image: "plant.jpg",
+  },
+  { id: 2, name: "Svenska utdelningstoppen", image: "pig.jpg" },
+  { id: 3, name: "Kryptoaktier", image: "gold.jpg" },
   {
     id: 4,
     name: "Expertens råd till den riskvillige, här är ett par lockande aktier",
+    image: "gold.jpg",
   },
 ];
 </script>

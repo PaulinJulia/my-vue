@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed, watch } from "vue";
 import axios from "axios";
 const fmpApiKey = import.meta.env.VITE_APP_FMP_KEY as string;
+
+const { selectedMarket } = defineProps<{
+  selectedMarket: string;
+}>();
 
 interface StockData {
   avgVolume: number;
@@ -27,10 +31,18 @@ interface StockData {
   yearHigh: number;
   yearLow: number;
 }
-
-const exchange = ["STO"];
+const searchWord = ref("");
 const data = ref<StockData[]>([]);
 const visibleItems = ref(20);
+
+// const searched = computed(() => {
+//   if (!searchWord) {
+//     return data.value;
+//   } else
+//     return data.value.filter((stock) =>
+//       stock.name.toLowerCase().includes(searchWord.toLowerCase())
+//     );
+// });
 
 const handleClickedItem = (name: string) => {
   console.log("klickad", name);
@@ -48,9 +60,10 @@ const handleScroll = () => {
   }
 };
 
-onMounted(async () => {
+const fetchStockData = async () => {
+  if (!selectedMarket) return;
   try {
-    const fmpApiUrl = `https://financialmodelingprep.com/api/v3/symbol/${exchange}?&apikey=${fmpApiKey}`;
+    const fmpApiUrl = `https://financialmodelingprep.com/api/v3/symbol/${selectedMarket}?&apikey=${fmpApiKey}`;
 
     if (!fmpApiUrl) {
       console.error("FMP API error");
@@ -89,14 +102,38 @@ onMounted(async () => {
   } catch (error) {
     console.error("Error fetching stock data:", error);
   }
-});
+};
+fetchStockData();
 
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
 });
+
+watch(
+  () => selectedMarket,
+  async (newMarket, oldMarket) => {
+    if (newMarket && newMarket !== oldMarket) {
+      console.log(`Market changed from ${oldMarket} to ${newMarket}`);
+      data.value = []; // Rensa tidigare data
+      await fetchStockData();
+    }
+  }
+);
 </script>
 
 <template>
+  <div class="search-wrapper">
+    <input
+      v-model="searchWord"
+      type="text"
+      placeholder="Namn"
+      class="search-input"
+    />
+    <select class="list">
+      <option>Lista</option>
+      <option>OMXS30</option>
+    </select>
+  </div>
   <div class="container">
     <div class="title-wrapper">
       <p class="title">Pris/Vinstkrona</p>
@@ -123,6 +160,28 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-input {
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  margin: 1rem;
+  letter-spacing: 1px;
+  width: 150px;
+}
+.search-input:active,
+.search-input:focus {
+  outline: none;
+}
+.list,
+.list > option {
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  width: 150px;
+}
 .container {
   margin: 0 2rem 5rem 2rem;
 }
@@ -140,10 +199,12 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--color-background-grey);
 }
 .item-name {
   text-transform: uppercase;
   font-weight: bold;
+  width: 200px;
   /* flex: 1; */
 }
 .stock-wrapper > li {
