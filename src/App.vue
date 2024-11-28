@@ -13,7 +13,7 @@ import FooterComponent from "./components/FooterComponent.vue";
           src="@/assets/greenleaf.png"
           width="16"
           height="16"
-        /><span>Home</span></RouterLink
+        /><span>Start</span></RouterLink
       >
       <RouterLink to="/inspiration">Inspiration</RouterLink>
       <RouterLink to="/stockprice">Aktiekurser</RouterLink>
