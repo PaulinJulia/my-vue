@@ -3,13 +3,12 @@ import { ref } from "vue";
 import StockMarket from "./StockMarket.vue";
 const selectedMarket = ref("STO");
 
-const handleUnitedKingdom = () => {
-  selectedMarket.value = "LSE";
+const handleJapanese = () => {
+  selectedMarket.value = "JPX";
 };
 const handleUSA = () => {
-  selectedMarket.value = "NYSE";
+  selectedMarket.value = "NASDAQ";
 };
-
 const handleGermany = () => {
   selectedMarket.value = "XETRA";
 };
@@ -17,11 +16,8 @@ const handleGermany = () => {
 
 <template>
   <div class="market-wrapper">
-    <button class="market" @click="handleUnitedKingdom">
-      <img
-        src="https://flagsapi.com/GB/flat/64.png"
-        class="flag"
-      />Storbritannien
+    <button class="market" @click="handleJapanese">
+      <img src="https://flagsapi.com/JP/flat/64.png" class="flag" />Japan
     </button>
     <button class="market" @click="handleUSA">
       <img src="https://flagsapi.com/US/flat/64.png" class="flag" />USA

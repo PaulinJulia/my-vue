@@ -48,6 +48,7 @@ const searched = computed(() => {
   }
 });
 
+//No function
 const handleClickedItem = (name: string) => {
   console.log("klickad", name);
 };
@@ -117,7 +118,7 @@ watch(
   () => selectedMarket,
   async (newMarket, oldMarket) => {
     if (newMarket && newMarket !== oldMarket) {
-      console.log(`Market changed from ${oldMarket} to ${newMarket}`);
+      // console.log(`Market changed from ${oldMarket} to ${newMarket}`);
       data.value = []; // Rensa tidigare data
       await fetchStockData();
     }
@@ -140,10 +141,12 @@ watch(
   </div>
   <div class="container">
     <div class="title-wrapper">
-      <p class="title-market" v-if="selectedMarket === 'LSE'">Storbritannien</p>
-      <p class="title-market" v-else-if="selectedMarket === 'NYSE'">USA</p>
+      <p class="title-market" v-if="selectedMarket === 'JPX'">Japan(JPX)</p>
+      <p class="title-market" v-else-if="selectedMarket === 'NASDAQ'">
+        USA(NASDAQ)
+      </p>
       <p class="title-market" v-else-if="selectedMarket === 'XETRA'">
-        Tyskland
+        Tyskland(XETRA)
       </p>
       <p class="title-market" v-else>Sverige</p>
       <p class="title">Pris/Vinstkrona</p>
@@ -211,7 +214,7 @@ watch(
   padding: 0 1rem;
 }
 .stock-wrapper {
-  border: 1px solid var(--color-grey);
+  border-bottom: 1px solid var(--color-grey);
   list-style: none;
   display: flex;
   justify-content: space-between;

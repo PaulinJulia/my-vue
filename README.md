@@ -1,33 +1,32 @@
-# me-vue
+# Stock inspiration
+The stock inspiration is designed to help users discover and learn about different stocks in an engaging and educational way. The application provides selected stock lists and relevant data to inspire users to explore the stock market. Users can search for stocks and filter by categories. The aim is to simplify the stock exchange and teach curious beginners.
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+## How to install
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+node.js - https://nodejs.org/en/download  
+npm - https://www.npmjs.com/
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```
+git clone https://github.com/PaulinJulia/my-vue
+cd my-vue
 npm install
-```
 
-### Compile and Hot-Reload for Development
+Create a .env file in the client directory and add the following variable:
+VITE_APP_FMP_KEY=<your-key>
 
-```sh
+cd my-vue
 npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
 ```
+## API
+Financial Modeling Prep   
+https://site.financialmodelingprep.com/
+
+## About
+
+The project was carried out by one person for the purpose of learing and consolidate knowledge during a course in VUE.js. This project has no intention of continuing.
+
+## Support
+
+email: julia.paulin@chasacademy.se

@@ -8,12 +8,17 @@ interface Card {
 defineProps<{
   cards: Card[];
 }>();
+
+const getImageUrl = (imageName: string) => {
+  return new URL(`../assets/${imageName}`, import.meta.url).href;
+};
 </script>
 
 <template>
   <div class="card-container">
-    <p v-for="card in cards" :key="card.id" class="cardItem">
-      <img :src="`/assets/${card.image}`" :alt="card.image" class="image" />
+    <p v-for="card in cards" :key="card.id" class="card-item">
+      <!-- <img :src="`/assets/${card.image}`" :alt="card.image" class="image" /> -->
+           <img class="image" :src="getImageUrl(card.image)" :alt="card.image" />
       <p>{{ card.name }}</p>
       <img>
     </p>
@@ -29,8 +34,7 @@ defineProps<{
   padding: 2rem 5rem;
 }
 
-.cardItem {
-  padding: 1rem;
+.card-item {
   margin: 1rem;
   width: 15rem;
   height: 16rem;
@@ -39,5 +43,11 @@ defineProps<{
   box-shadow: 2px 2px 10px rgb(67, 66, 66);
   background-color: var(--color-background-grey);
   color: var(--color-black);
+}
+
+.image {
+  width: 100%; 
+  height: 150px; 
+  object-fit: cover; 
 }
 </style>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+//Not complete
 const handleStart = () => {
   console.log("hej från startknappen");
 };
@@ -11,7 +12,7 @@ const handleStart = () => {
       inspiration. Bygg din egen portfölj och sprid risken genom att investera i
       olika bolag och branscher, över tid.
     </p>
-    <button @click="handleStart" class="start-button">LOGGA IN</button>
+    <button @click="handleStart" class="start-button">Logga in</button>
   </section>
 </template>
 

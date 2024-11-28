@@ -14,7 +14,7 @@ const cards = [
   {
     id: 4,
     name: "Expertens råd till den riskvillige, här är ett par lockande aktier",
-    image: "gold.jpg",
+    image: "light.jpg",
   },
 ];
 </script>
