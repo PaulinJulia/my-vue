@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, watch } from "vue";
+import { useRouter } from "vue-router";
 import axios from "axios";
 const fmpApiKey = import.meta.env.VITE_APP_FMP_KEY as string;
 
 const { selectedMarket } = defineProps<{
   selectedMarket: string;
 }>();
+
+const router = useRouter();
 
 interface StockData {
   avgVolume: number;
@@ -48,9 +51,8 @@ const searched = computed(() => {
   }
 });
 
-//No function
-const handleClickedItem = (name: string) => {
-  console.log("klickad", name);
+const handleClickedItem = (symbol: string, exchange: string) => {
+  router.push({ name: "stockinfo", params: { symbol, exchange } });
 };
 
 const loadMoreItems = () => {
@@ -74,7 +76,7 @@ const fetchStockData = async () => {
       console.error("FMP API error");
     }
     const response = await axios.get(fmpApiUrl);
-    // console.log(response.data);
+    //  console.log(response.data);
 
     response.data.forEach((item: StockData) => {
       data.value.push({
@@ -103,7 +105,7 @@ const fetchStockData = async () => {
       });
     });
     window.addEventListener("scroll", handleScroll);
-    // console.log(data);
+    //  console.log(data);
   } catch (error) {
     console.error("Error fetching stock data:", error);
   }
@@ -159,7 +161,7 @@ watch(
         v-for="(item, index) in searched.slice(0, visibleItems)"
         :key="index"
         class="stock-wrapper"
-        @click="handleClickedItem(item.name)"
+        @click="handleClickedItem(item.symbol, item.exchange)"
       >
         <li class="item-name">{{ item.name }}</li>
         <li class="item">{{ item.pe }}</li>

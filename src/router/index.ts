@@ -20,6 +20,12 @@ const router = createRouter({
       component: () => import("../views/StockPriceView.vue"),
     },
     {
+      path: "/stockinfo/:symbol/:exchange",
+      name: "stockinfo",
+      component: () => import("../views/StockInfoView.vue"),
+      props: true,
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "not-found",
       component: () => import("../views/NotFoundView.vue"),
