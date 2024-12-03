@@ -10,9 +10,11 @@ import ThirdSection from "../components/ThirdSection.vue";
     <Welcome />
   </section>
   <main class="container">
-    <FirstSection />
-    <SecondSection />
-    <ThirdSection />
+    <div class="content">
+      <FirstSection />
+      <SecondSection />
+      <ThirdSection />
+    </div>
   </main>
 </template>
 
@@ -32,7 +34,10 @@ import ThirdSection from "../components/ThirdSection.vue";
   padding: 2rem 10rem 2rem 10rem;
 }
 .container {
-  margin: 0;
+  margin: 0 auto;
   /* height: 100vh; */
 }
+/* .content {
+  max-width: 720px;
+} */
 </style>

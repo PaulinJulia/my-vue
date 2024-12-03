@@ -1,7 +1,10 @@
 <script setup lang="ts">
-//Not complete
-const handleStart = () => {
-  console.log("hej från startknappen");
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const handleLogin = () => {
+  router.push({ name: "login" });
 };
 </script>
 
@@ -12,7 +15,7 @@ const handleStart = () => {
       inspiration. Bygg din egen portfölj och sprid risken genom att investera i
       olika bolag och branscher, över tid.
     </p>
-    <button @click="handleStart" class="start-button">Logga in</button>
+    <button @click="handleLogin" class="login-button">Logga in</button>
   </section>
 </template>
 
@@ -26,7 +29,7 @@ const handleStart = () => {
   margin-bottom: 2rem;
 }
 
-.start-button {
+.login-button {
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: uppercase;

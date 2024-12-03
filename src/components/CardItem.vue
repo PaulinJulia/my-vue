@@ -16,12 +16,11 @@ const getImageUrl = (imageName: string) => {
 
 <template>
   <div class="card-container">
-    <p v-for="card in cards" :key="card.id" class="card-item">
-      <!-- <img :src="`/assets/${card.image}`" :alt="card.image" class="image" /> -->
+    <div v-for="card in cards" :key="card.id" class="card-item">
            <img class="image" :src="getImageUrl(card.image)" :alt="card.image" />
       <p>{{ card.name }}</p>
       <img>
-    </p>
+    </div>
   </div>
 </template>
 

@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import FooterComponent from "./components/FooterComponent.vue";
+import { provide, ref } from "vue";
+
+const isLoggedIn = ref(false);
+provide("isLoggedIn", isLoggedIn);
 </script>
 
 <template>
@@ -32,7 +36,6 @@ header {
 }
 
 .navbar-container {
-  width: 100%;
   font-size: 12px;
   text-align: center;
   padding: 1rem;
