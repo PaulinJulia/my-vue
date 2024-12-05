@@ -33,21 +33,57 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <div>
-    <form @submit.prevent="handleLogin">
-      <input type="email" v-model="email" placeholder="Email" />
-      <input type="password" v-model="password" placeholder="Password" />
-      <button type="submit">Login</button>
-    </form>
-  </div>
+  <main class="container">
+    <div class="login-container">
+      <form @submit.prevent="handleLogin" class="login-form">
+        <p>Logga in</p>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" v-model="email" placeholder="Email" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" v-model="password" placeholder="Password" />
+        </div>
+        <button type="submit" class="login-button">Logga in</button>
+      </form>
+    </div>
+  </main>
 </template>
 
 <style scoped>
+.container {
+  height: 100vh;
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem;
+  background-color: var(--color-grey);
+  width: 20rem;
+  height: 20rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  max-width: 300px;
+}
 input {
   display: block;
   margin: 10px 0;
   padding: 8px;
   width: 100%;
   max-width: 300px;
+}
+label {
+  color: var(--color-black);
 }
 </style>

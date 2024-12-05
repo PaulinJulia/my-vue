@@ -14,4 +14,7 @@ import Market from "../components/Market.vue";
   margin: 0;
   color: var(--color-black);
 }
+h1 {
+  padding-left: 1rem;
+}
 </style>

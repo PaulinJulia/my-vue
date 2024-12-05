@@ -17,9 +17,9 @@ const getImageUrl = (imageName: string) => {
 <template>
   <div class="card-container">
     <div v-for="card in cards" :key="card.id" class="card-item">
-           <img class="image" :src="getImageUrl(card.image)" :alt="card.image" />
+      <img class="image" :src="getImageUrl(card.image)" :alt="card.image" />
       <p>{{ card.name }}</p>
-      <img>
+      <img />
     </div>
   </div>
 </template>
@@ -32,6 +32,11 @@ const getImageUrl = (imageName: string) => {
   justify-content: center;
   padding: 2rem 5rem;
 }
+.card-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
 
 .card-item {
   margin: 1rem;
@@ -42,11 +47,12 @@ const getImageUrl = (imageName: string) => {
   box-shadow: 2px 2px 10px rgb(67, 66, 66);
   background-color: var(--color-background-grey);
   color: var(--color-black);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .image {
-  width: 100%; 
-  height: 150px; 
-  object-fit: cover; 
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
 </style>

@@ -47,6 +47,9 @@ const handleGermany = () => {
   color: var(--color-black);
   font-size: 12px;
 }
+.market:hover {
+  transform: scale(1.05);
+}
 .flag {
   border-radius: 60%;
   width: 24px;

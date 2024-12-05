@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onUnmounted, computed, watch } from "vue";
+import { ref, onUnmounted, computed, watch, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 const fmpApiKey = import.meta.env.VITE_APP_FMP_KEY as string;
@@ -59,12 +59,23 @@ const loadMoreItems = () => {
   visibleItems.value += 10;
 };
 
-const handleScroll = () => {
-  const bottomOfWindow =
-    window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
-  if (bottomOfWindow) {
-    loadMoreItems();
-  }
+let isScrolling = false;
+const handleScroll = (event: Event) => {
+  if (isScrolling) return;
+
+  isScrolling = true;
+  setTimeout(() => {
+    const container = event.target as HTMLElement;
+    const bottomOfContainer =
+      container.scrollTop + container.clientHeight >=
+      container.scrollHeight - 100;
+
+    if (bottomOfContainer) {
+      loadMoreItems();
+    }
+
+    isScrolling = false;
+  }, 200);
 };
 
 const fetchStockData = async () => {
@@ -78,42 +89,20 @@ const fetchStockData = async () => {
     const response = await axios.get(fmpApiUrl);
     //  console.log(response.data);
 
+    if (!Array.isArray(response.data)) {
+      console.error("Invalid data format from API");
+      return;
+    }
+
     response.data.forEach((item: StockData) => {
-      data.value.push({
-        avgVolume: item.avgVolume,
-        change: item.change,
-        changesPercentage: item.change,
-        dayHigh: item.dayHigh,
-        dayLow: item.dayLow,
-        earningsAnnouncement: item.earningsAnnouncement,
-        eps: item.eps,
-        exchange: item.exchange,
-        marketCap: item.marketCap,
-        name: item.name,
-        open: item.open,
-        pe: item.pe,
-        previousClose: item.previousClose,
-        price: item.price,
-        priceAvg50: item.priceAvg50,
-        priceAvg200: item.priceAvg200,
-        sharesOutstanding: item.sharesOutstanding,
-        symbol: item.symbol,
-        timestamp: item.timestamp,
-        volume: item.volume,
-        yearHigh: item.yearHigh,
-        yearLow: item.yearLow,
-      });
+      data.value.push(item);
     });
-    window.addEventListener("scroll", handleScroll);
-    //  console.log(data);
   } catch (error) {
     console.error("Error fetching stock data:", error);
   }
 };
-fetchStockData();
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
+onMounted(() => {
+  fetchStockData();
 });
 
 watch(
@@ -121,7 +110,7 @@ watch(
   async (newMarket, oldMarket) => {
     if (newMarket && newMarket !== oldMarket) {
       // console.log(`Market changed from ${oldMarket} to ${newMarket}`);
-      data.value = []; 
+      data.value = [];
       await fetchStockData();
     }
   }
@@ -136,12 +125,8 @@ watch(
       placeholder="Namn"
       class="search-input"
     />
-    <select class="list">
-      <option>Lista</option>
-      <option>OMXS30</option>
-    </select>
   </div>
-  <div class="container">
+  <div>
     <div class="title-wrapper">
       <p class="title-market" v-if="selectedMarket === 'JPX'">Japan(JPX)</p>
       <p class="title-market" v-else-if="selectedMarket === 'NASDAQ'">
@@ -150,13 +135,13 @@ watch(
       <p class="title-market" v-else-if="selectedMarket === 'XETRA'">
         Tyskland(XETRA)
       </p>
-      <p class="title-market" v-else>Sverige</p>
+      <p class="title-market" v-else>Sverige(OMX)</p>
       <p class="title">Pris/Vinstkrona</p>
       <p class="title">Pris</p>
       <p class="title">Årshögst</p>
       <p class="title">Årslägst</p>
     </div>
-    <div v-if="searched.length">
+    <div v-if="searched.length" class="scroll-container" @scroll="handleScroll">
       <ul
         v-for="(item, index) in searched.slice(0, visibleItems)"
         :key="index"
@@ -201,8 +186,10 @@ watch(
 .list:focus {
   outline: none;
 }
-.container {
+.scroll-container {
   margin: 0 2rem 5rem 2rem;
+  height: 900px;
+  overflow-y: auto;
 }
 .title-wrapper {
   display: flex;
@@ -228,6 +215,10 @@ watch(
   font-weight: bold;
   width: 200px;
   /* flex: 1; */
+}
+.item-name:hover {
+  cursor: pointer;
+  color: var(--text-color-mint);
 }
 .stock-wrapper > li {
   padding: 0.5rem;
