@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import CardItem from "../components/CardItem.vue";
 import ThirdSection from "../components/ThirdSection.vue";
-import StockHistorical from "../components/StockHistorical.vue";
 
 const cards = [
   {
@@ -22,7 +21,6 @@ const cards = [
 <template>
   <main class="container">
     <ThirdSection />
-    <StockHistorical />
     <CardItem :cards="cards" />
     <ThirdSection />
   </main>
@@ -31,7 +29,6 @@ const cards = [
 <style>
 .container {
   margin: 0;
-  /* height: 100vh; */
   color: var(--color-black);
 }
 </style>

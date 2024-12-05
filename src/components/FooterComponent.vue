@@ -1,8 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { inject } from "vue";
+
+const about = inject("about", "Default value");
+</script>
 
 <template>
   <div class="card-container">
-    <p>Om oss</p>
+    <p>{{ about }}</p>
     <p>Kontakt</p>
     <p>Kundservice</p>
     <p>Nyheter</p>

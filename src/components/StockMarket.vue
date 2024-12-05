@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed, watch } from "vue";
+import { ref, onUnmounted, computed, watch } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 const fmpApiKey = import.meta.env.VITE_APP_FMP_KEY as string;
@@ -121,7 +121,7 @@ watch(
   async (newMarket, oldMarket) => {
     if (newMarket && newMarket !== oldMarket) {
       // console.log(`Market changed from ${oldMarket} to ${newMarket}`);
-      data.value = []; // Rensa tidigare data
+      data.value = []; 
       await fetchStockData();
     }
   }

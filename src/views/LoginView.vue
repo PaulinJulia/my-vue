@@ -4,29 +4,28 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-// const isLoggedIn = ref(false);
-// const userEmail = ref("Användarnamn");
-const email = ref("");
-const password = ref("");
-
-// provide("email", email);
-// provide("password", password);
-// provide("userEmail", userEmail);
-// provide("isLoggedIn", isLoggedIn);
-
-// const authState = inject("authState");
+const email = ref("test@test.com"); //för att testa route guards
+const password = ref("test123"); //för att testa route guards
 
 const handleLogin = async () => {
-  if (email.value === "test@test.com" && password.value === "test123") {
-    console.log("Inloggning lyckades!");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email.value)) {
+    alert("Ogiltig e-postadress.");
+    return;
+  }
+
+  if (password.value.length < 6) {
+    alert("Lösenordet måste vara minst 6 tecken.");
+    return;
+  }
+
+  if (email.value && password.value) {
     sessionStorage.setItem("email", email.value);
     sessionStorage.setItem("password", password.value);
-    console.log(email.value);
-    console.log(password.value);
     router.push({ name: "user" });
   } else {
     alert("Felaktig e-post eller lösenord.");
-
     email.value = "";
     password.value = "";
   }

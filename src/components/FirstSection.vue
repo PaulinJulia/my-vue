@@ -33,7 +33,7 @@ const handleLogin = () => {
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: uppercase;
-  display: block; /* Gör knappen blocknivå */
+  display: block; 
   margin: 0 auto;
 }
 </style>

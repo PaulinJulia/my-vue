@@ -1,11 +1,7 @@
-<script setup lang="ts">
-import { inject } from "vue";
-
-const userEmail = inject("userEmail", "Användarnamn");
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <h1 class="title">Välkommen {{ userEmail }}</h1>
+  <h1 class="title">Välkommen!</h1>
 </template>
 
 <style scoped>

@@ -12,7 +12,6 @@ import Market from "../components/Market.vue";
 <style>
 .container {
   margin: 0;
-  /* height: 100vh; */
   color: var(--color-black);
 }
 </style>

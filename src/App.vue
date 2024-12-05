@@ -3,8 +3,9 @@ import { RouterLink, RouterView } from "vue-router";
 import FooterComponent from "./components/FooterComponent.vue";
 import { provide, ref } from "vue";
 
-const isLoggedIn = ref(false);
-provide("isLoggedIn", isLoggedIn);
+const about = ref("Om oss")
+provide("about", about)
+
 </script>
 
 <template>
@@ -32,7 +33,6 @@ provide("isLoggedIn", isLoggedIn);
 <style scoped>
 header {
   line-height: 1.5;
-  /* max-height: 100vh; */
 }
 
 .navbar-container {

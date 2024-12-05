@@ -20,10 +20,6 @@ const router = createRouter({
       path: "/user",
       name: "user",
       component: () => import("../views/UserView.vue"),
-      // beforeEnter: (to, from, next) => {
-      //   if (to.name !== "Login" && !isAuthenticated) next({ name: "Login" });
-      //   else next();
-      // },
     },
     {
       path: "/inspiration",
@@ -56,6 +52,11 @@ router.beforeEach((to, from, next) => {
 
     if (email === "test@test.com" && password === "test123") {
       isAuthenticated = true;
+    } else {
+      isAuthenticated = false;
+    }
+    if (!isAuthenticated) {
+      return next({ path: "/login" });
     }
   }
   next();
