@@ -1,6 +1,14 @@
 # Stock inspiration
-The stock inspiration is designed to help users discover and learn about different stocks in an engaging and educational way. The application provides selected stock lists and relevant data to inspire users to explore the stock market. Users can search for stocks and filter by categories. The aim is to simplify the stock exchange and teach curious beginners.
 
+The idea of ​​stock inspiration is to help users discover and learn about different stocks in an engaging and educational way. The application provides selected stock lists and relevant data to inspire users to explore the stock market. Users can search for stocks and filter by market. The purpose is to simplify the stock market and teach curious beginners.
+
+The user can navigate around to different pages, create an account (in this simple version email and password are saved in session storage). When you are logged in, your personal page is only visible to you. You can see share prices for the selected market and search for a specific share. By clicking on a stock, you can get more information. Pages that do not exist are handled with an error route.
+
+This application is built with the help of Open AI, ChatGPT who has provided suggestions for improvements, created boiler plates and helped to debug issues. It has helped speed up construction, improve code quality with above all error handling and taught me to understand code better.
+
+## Visuals
+
+![Start page stock market](/src/assets/stock-project.png "Stock market")
 
 ## How to install
 
@@ -19,8 +27,10 @@ cd my-vue
 npm run dev
 
 ```
+
 ## API
-Financial Modeling Prep   
+
+Financial Modeling Prep  
 https://site.financialmodelingprep.com/
 
 ## About
